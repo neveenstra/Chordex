@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/Users/nveenstra/Documents/GitHub/Chordex/build/CMakeFiles/bootloader
+/Users/nveenstra/Documents/GitHub/Chordex/build/CMakeFiles/bootloader.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/CMakeFiles/bootloader-complete.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/Users/nveenstra/Documents/GitHub/Chordex/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

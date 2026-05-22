@@ -1,0 +1,7 @@
+file(GLOB_RECURSE SRC_FILES "*.c")
+
+idf_component_register(SRCS ${SRC_FILES}
+                    INCLUDE_DIRS "." "fonts"
+                    REQUIRES "main" "lvgl__lvgl" "esp_bsp" "freertos"
+                             "spi_flash" "driver" "esp_hw_support" "esp_timer"
+                             "espressif__esp_lvgl_port")

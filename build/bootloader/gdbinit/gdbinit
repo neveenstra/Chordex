@@ -1,0 +1,2 @@
+source /Users/nveenstra/Documents/GitHub/Chordex/build/bootloader/gdbinit/symbols
+source /Users/nveenstra/Documents/GitHub/Chordex/build/bootloader/gdbinit/connect
