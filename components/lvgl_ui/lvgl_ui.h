@@ -23,11 +23,6 @@ void lvgl_ui_pulse_source(int source);
 
 void lvgl_ui_set_dimmed(bool dimmed);
 
-// Temporary on-screen hardware probe for the DIN UART. Counter is the total
-// bytes the UART has framed since boot; last_byte is the most recent one.
-// Stuck at zero = nothing electrically reaching GPIO 7.
-void lvgl_ui_set_din_debug(uint32_t count, uint8_t last_byte);
-
 #ifdef __cplusplus
 }
 #endif

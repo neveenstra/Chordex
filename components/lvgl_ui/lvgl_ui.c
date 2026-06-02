@@ -30,7 +30,6 @@ static lv_obj_t *pill_usb_label;
 static lv_obj_t *pill_din;
 static lv_obj_t *pill_din_label;
 static lv_obj_t *pc_dots[12];
-static lv_obj_t *din_debug_label;
 
 static bool s_connected[2] = { false, false };
 static char s_last_chord[24];
@@ -177,14 +176,6 @@ void lvgl_ui_init(void)
         pc_dots[i] = d;
     }
 
-    // Temp DIN probe — tiny dim text in the bottom-left. Stays at "din 0" if
-    // nothing reaches GPIO 7.
-    din_debug_label = lv_label_create(root);
-    lv_obj_set_style_text_font(din_debug_label,  &lv_font_montserrat_12, LV_PART_MAIN);
-    lv_obj_set_style_text_color(din_debug_label, COLOR_DIM,              LV_PART_MAIN);
-    lv_label_set_text(din_debug_label, "din 0");
-    lv_obj_align(din_debug_label, LV_ALIGN_TOP_LEFT, 4, 142);
-
     apply_pill_state(pill_usb, pill_usb_label, false, COLOR_CYAN);
     apply_pill_state(pill_din, pill_din_label, false, COLOR_GREEN);
 
@@ -271,12 +262,4 @@ void lvgl_ui_set_dimmed(bool dimmed)
     // but the UI itself doesn't need to change layout when dimmed.
 }
 
-void lvgl_ui_set_din_debug(uint32_t count, uint8_t last_byte)
-{
-    if (!din_debug_label) return;
-    char buf[32];
-    snprintf(buf, sizeof(buf), "din %lu  %02X",
-             (unsigned long)count, last_byte);
-    lv_label_set_text(din_debug_label, buf);
-}
 

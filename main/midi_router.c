@@ -49,12 +49,12 @@ void midi_router_set_connected(midi_source_t src, bool connected)
 {
     if (src >= SOURCE_COUNT) return;
     s_connected[src] = connected;
-    if (!connected) {
-        // When a source disconnects, clear any notes that source might own.
-        // We don't track ownership per-source; safest is to drop everything
-        // so a stuck note from a yanked cable doesn't linger.
-        chord_detect_all_off();
-    }
+    // Don't auto-clear notes on disconnect. The DIN path infers connection
+    // state from a 1.5-second idle timeout, and a held chord with no Active
+    // Sensing from the source looks identical to a disconnect — clearing
+    // notes here makes the chord disappear while you're still holding it.
+    // If a source actually sends an "all notes off" CC, midi_router_handle
+    // routes that through chord_detect_all_off() explicitly.
 }
 
 bool midi_router_is_connected(midi_source_t src)

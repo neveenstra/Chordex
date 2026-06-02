@@ -14,13 +14,6 @@ extern "C" {
 
 void din_midi_init(void);
 
-// Raw UART counters for on-screen hardware diagnosis. The counter ticks up
-// for any byte the UART successfully framed (regardless of whether the MIDI
-// parser then accepted it), so a stuck-at-zero counter means "no UART
-// activity on GPIO at all".
-uint32_t din_midi_raw_byte_count(void);
-uint8_t  din_midi_last_raw_byte(void);
-
 #ifdef __cplusplus
 }
 #endif
