@@ -1,4 +1,4 @@
-# Install script for directory: /Users/nveenstra/Documents/GitHub/Chordex/components/esp_lcd_st7789t
+# Install script for directory: /Users/nveenstra/Documents/GitHub/Chordex/components/esp_lcd_jd9853
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

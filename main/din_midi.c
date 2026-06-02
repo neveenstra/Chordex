@@ -13,6 +13,15 @@ static const char *TAG = "din_midi";
 #define DIN_UART_BAUD      31250
 #define DIN_UART_BUF       512
 
+// Diagnostic counters — readable from the UI so we can see whether the UART
+// is actually getting any electrical activity on GPIO 7 without needing a
+// serial monitor (USB port is busy with USB MIDI).
+static volatile uint32_t s_raw_byte_count;
+static volatile uint8_t  s_last_raw_byte;
+
+uint32_t din_midi_raw_byte_count(void) { return s_raw_byte_count; }
+uint8_t  din_midi_last_raw_byte(void)  { return s_last_raw_byte; }
+
 // Activity-based "is the cable plugged in" inference: if no MIDI bytes for
 // this long, mark the source disconnected. A keyboard sitting idle still
 // emits Active Sensing (0xFE) every 300 ms by spec, so a 1 s window is safe.
@@ -83,6 +92,8 @@ static void din_midi_task(void *arg)
         int n = uart_read_bytes(DIN_UART_NUM, buf, sizeof(buf), pdMS_TO_TICKS(50));
         if (n > 0) {
             last_byte_us = esp_timer_get_time();
+            s_raw_byte_count += n;
+            s_last_raw_byte   = buf[n - 1];
             if (!connected) {
                 connected = true;
                 midi_router_set_connected(MIDI_SOURCE_DIN, true);
@@ -113,6 +124,10 @@ void din_midi_init(void)
     // RX only — a DIN INPUT is a one-way path from the keyboard.
     ESP_ERROR_CHECK(uart_set_pin(DIN_UART_NUM, UART_PIN_NO_CHANGE, DIN_MIDI_RX_GPIO,
                                  UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE));
+    // Internal pull-down on the RX pin. Holds the line LOW when the MIDI
+    // cable is unplugged so the UART doesn't see noise from nearby digital
+    // lines and frame phantom bytes.
+    ESP_ERROR_CHECK(gpio_pulldown_en(DIN_MIDI_RX_GPIO));
 
     xTaskCreate(din_midi_task, "din_midi", 4096, NULL, 5, NULL);
     ESP_LOGI(TAG, "DIN MIDI listening on GPIO %d @ %d baud",

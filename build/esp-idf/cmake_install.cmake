@@ -564,7 +564,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_lcd_st7789t/cmake_install.cmake")
+  include("/Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_lcd_jd9853/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

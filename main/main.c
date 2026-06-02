@@ -73,7 +73,7 @@ static esp_err_t app_lvgl_init(void)
     // rotation — matches Waveshare's LV_DISP_ROT_90 path.
     disp_cfg.rotation.swap_xy  = true;
     disp_cfg.rotation.mirror_x = true;
-    disp_cfg.rotation.mirror_y = true;
+    disp_cfg.rotation.mirror_y = false;
     ESP_ERROR_CHECK(esp_lcd_panel_set_gap(panel_handle, 0, 34));
 
     lvgl_disp = lvgl_port_add_disp(&disp_cfg);
@@ -87,11 +87,15 @@ static esp_err_t app_lvgl_init(void)
 
 static void ui_refresh_task(void *arg)
 {
-    bool last_usb = false, last_din = false;
+    bool     last_usb = false, last_din = false;
+    uint32_t last_din_count = 0xFFFFFFFFu;
 
     for (;;) {
         bool usb = midi_router_is_connected(MIDI_SOURCE_USB);
         bool din = midi_router_is_connected(MIDI_SOURCE_DIN);
+
+        uint32_t din_count = din_midi_raw_byte_count();
+        uint8_t  din_last  = din_midi_last_raw_byte();
 
         if (lvgl_port_lock(0)) {
             if (usb != last_usb) {
@@ -101,6 +105,10 @@ static void ui_refresh_task(void *arg)
             if (din != last_din) {
                 lvgl_ui_set_source_connected(1, din);
                 last_din = din;
+            }
+            if (din_count != last_din_count) {
+                lvgl_ui_set_din_debug(din_count, din_last);
+                last_din_count = din_count;
             }
             lvgl_ui_refresh();
             lvgl_port_unlock();

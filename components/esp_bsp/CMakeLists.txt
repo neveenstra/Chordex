@@ -2,4 +2,4 @@ file(GLOB_RECURSE SRC_FILES "*.c")
 
 idf_component_register(SRCS ${SRC_FILES}
                     INCLUDE_DIRS "."
-                    REQUIRES "esp_lcd" "driver" "esp_lcd_st7789t")
+                    REQUIRES "esp_lcd" "driver" "esp_lcd_jd9853")

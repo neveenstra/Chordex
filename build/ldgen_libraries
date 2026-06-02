@@ -161,10 +161,10 @@
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/usb/libusb.a
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/json/libjson.a
-/Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_lcd_st7789t/libesp_lcd_st7789t.a
+/Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_lcd_jd9853/libesp_lcd_jd9853.a
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_lcd/libesp_lcd.a
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_bsp/libesp_bsp.a
-/Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_lcd_st7789t/libesp_lcd_st7789t.a
+/Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/esp_lcd_jd9853/libesp_lcd_jd9853.a
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/lvgl__lvgl/liblvgl__lvgl.a
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/lvgl__lvgl/liblvgl__lvgl.a
 /Users/nveenstra/Documents/GitHub/Chordex/build/esp-idf/espressif__esp_lvgl_port/liblvgl_port_lib.a
